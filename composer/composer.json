@@ -1,0 +1,13 @@
+{
+    "name": "composer/david",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "DavidSouzadms",
+            "email": "devid_souza@hotmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^1.0"
+    }
+}
