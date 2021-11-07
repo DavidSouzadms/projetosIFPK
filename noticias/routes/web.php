@@ -14,12 +14,29 @@ use App\Http\Controllers\NoticiaController;
 |
 */
 
+
+
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
-Route::get('noticias',[App\Http\Controllers\NoticiaController::class,'index']);
-Route::post('noticias', [NoticiaController::class, 'store']); // Rota responsável por salvar a criação
-Route::get('noticias/create',[App\Http\Controllers\NoticiaController::class,'create']); // Rota responsável pelo formulário de criação
-Route::get('noticias/{noticia}/edit', [NoticiaController::class, 'edit']);
-Route::put('noticias/{noticia}/edit', [NoticiaController::class, 'update']); // Rota responsável por salvar a edição
+Route::middleware('auth')->group(function() {
+    Route::resource('noticias', NoticiaController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+//Route::get('noticias',[App\Http\Controllers\NoticiaController::class,'index']);
+//Route::post('noticias', [NoticiaController::class, 'store']); // Rota responsável por salvar a criação
+//Route::get('noticias/create',[App\Http\Controllers\NoticiaController::class,'create']); // Rota responsável pelo formulário de criação
+//Route::get('noticias/{noticia}/edit', [NoticiaController::class, 'edit']);
+//Route::put('noticias/{noticia}/edit', [NoticiaController::class, 'update']); // Rota responsável por salvar a edição
+//Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+//Route::resource('noticias', NoticiaController::class);
